@@ -10,4 +10,3 @@ class ConexaoFactory:
             password = 'hPK7ZYe9cTtgAzWz2ieL7BPoovTqFy-c'
             )
 
-conexao.close()
