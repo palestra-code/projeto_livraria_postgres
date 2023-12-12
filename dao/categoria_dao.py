@@ -27,25 +27,26 @@ class CategoriaDAO:
     def adicionar(self, categoria: Categoria) -> None:
         conexao = self.__conexao_factory.get_conexao()
         cursor = conexao.cursor()
-        cursor.execute(" " "
-        INSERT INTO categorias (nome) VALUES (%(nome)s)
-        " " ",
-        ({'nome' : categoria.nome, }))
+        cursor.execute(""" INSERT INTO categorias (nome) VALUES (%(nome)s)
+        """,
+        ({'nome' : categoria.nome }))
         conexao.commit()
         cursor.close()
         conexao.close()
         
     def remover(self, categoria_id: int) -> bool:
-        encontrado = False
-        
-        for c in self.__categorias:
-            if (c.id == categoria_id):
-                index = self.__categorias.index(c)
-                self.__categorias.pop(index)
-                encontrado = True
-                break
-        return encontrado
+        conexao = self.__conexao_factory.get_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("DELETE FROM categorias WHERE id = %s", (categoria_id))
+        categorias_removidas = cursor.rowcount()
+        conexao.commit()
+        cursor.close()
+        conexao.close()
 
+        if categorias_removidas == 0:
+            return False
+        return True
+        
     def buscar_por_id(self, categoria_id) -> Categoria:
         cat = None
         for c in self.__categorias:
