@@ -11,7 +11,7 @@ class CategoriaDAO:
     def listar(self) -> list[Categoria]:
         categorias = list()
 
-        conexa0 = self.__conexao_factory.get_conexao()
+        conexao = self.__conexao_factory.get_conexao()
         cursor = conexao.cursor()
         cursor.execute('SELECT id, nome FROM categorias')
         resultados = cursor.fetchall()
