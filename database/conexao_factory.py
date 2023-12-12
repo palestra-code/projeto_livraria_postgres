@@ -9,6 +9,5 @@ class ConexaoFactory:
             user = 'sdxiltor',
             password = 'hPK7ZYe9cTtgAzWz2ieL7BPoovTqFy-c'
             )
-print('Conectado ao banco de dados!')
 
 conexao.close()
