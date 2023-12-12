@@ -1,7 +1,7 @@
 class Categoria:
 
-    def __init__(self, id: int, nome: str):
-        self.__id: int = id
+    def __init__(self, nome: str):
+        self.__id: int = 0
         self.__nome: str = nome
 
     @property
@@ -20,6 +20,4 @@ class Categoria:
     def nome(self, nome: str):
         self.__nome = nome
 
-    @staticmethod
-    def depositar():
-        return "Opa"
+    
