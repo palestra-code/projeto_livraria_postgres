@@ -28,7 +28,7 @@ class EditoraDAO:
        cursor.execute("""
                 INSERT INTO editoras (nome, endereco, telefone) VALUES (%(nome)s, %(endereco)s, %(telefone)s)
                 """,
-                    ({'nome' : ediora.nome}, 'endereco': editora.endereco, 'telefone' : editora.telefone))
+                    ({'nome' : editora.nome}, 'endereco': editora.endereco, 'telefone' : editora.telefone))
         conexao.commit()
         cursor.close()
         conexao.close()
@@ -56,7 +56,7 @@ class EditoraDAO:
         if (resultado):
             edt = Editora(resultado[1], resultado[2], resultado[3])
             edt.id = resultado[0]
-        curosr.close()
+        cursor.close()
         conexao.close()
         return edt
 
