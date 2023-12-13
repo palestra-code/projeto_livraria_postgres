@@ -6,7 +6,7 @@ class CategoriaDAO:
 
     def __init__(self):
         self.__categorias: list[Categoria] = list()
-        self.__conexao_factory: Conexaofactory = ConexaoFactory()
+        self.__conexao_factory: ConexaoFactory = ConexaoFactory()
 
     def listar(self) -> list[Categoria]:
         categorias = list()
@@ -22,6 +22,7 @@ class CategoriaDAO:
            categorias.append(cat)
         cursor.close()
         conexao.close()
+
         return categorias
 
     def adicionar(self, categoria: Categoria) -> None:
@@ -37,13 +38,13 @@ class CategoriaDAO:
     def remover(self, categoria_id: int) -> bool:
         conexao = self.__conexao_factory.get_conexao()
         cursor = conexao.cursor()
-        cursor.execute("DELETE FROM categorias WHERE id = %s", (categoria_id))
-        categorias_removidas = cursor.rowcount()
+        cursor.execute("DELETE FROM categorias WHERE id = %s", (categoria_id,))
+        categorias_removidas = cursor.rowcount
         conexao.commit()
         cursor.close()
         conexao.close()
 
-        if categorias_removidas == 0:
+        if (categorias_removidas) == 0:
             return False
         return True
 
