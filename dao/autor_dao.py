@@ -11,7 +11,7 @@ class AutorDAO:
 
         conexao = self.__conexao_factory.get_conexao()
         cursor = conexao.cursor()
-        cursro.execute("SELECT id, nome, email, telefone, bio FROM autores")
+        cursor.execute("SELECT id, nome, email, telefone, bio FROM autores")
         resultados = cursor.fetchall()
         for resultado in resultados:
             aut = Autor(resultado[1], resultado[2], resultado[3], resultado[4])

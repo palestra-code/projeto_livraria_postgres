@@ -9,7 +9,7 @@ class EditoraDAO:
     def listar(self) -> list[Editora]:
         editoras = list()
 
-        conexao.self__conexao_factory.get_conexao()
+        conexao = conexao.self__conexao_factory.get_conexao()
         cursor = conexao.cursor()
         cursor.execute("SELECT id, nome, telefone, endereco FROM editoras")
         cursor.fetchall()
@@ -23,16 +23,16 @@ class EditoraDAO:
         return editoras
 
     def adicionar(self, editora: Editora) -> None:
-       conexao = self.__conexao_factory.get_conexao()
-       cursor = conexao.cursor()
-       cursor.execute("""
-                INSERT INTO editoras (nome, endereco, telefone) VALUES (%(nome)s, %(endereco)s, %(telefone)s)
-                """,
-                    ({'nome' : editora.nome}, 'endereco': editora.endereco, 'telefone' : editora.telefone))
+        conexao = self.__conexao_factory.get_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("""
+                        INSERT INTO editoras (nome, endereco, telefone) VALUES (%(nome)s, %(endereco)s, %(telefone)s)
+                        """,
+                           ({'nome' : editora.nome, 'endereco' : editora.endereco, 'telefone' : editora.telefone}))
         conexao.commit()
         cursor.close()
         conexao.close()
-
+    
     def remover(self, editora_id: int) -> bool:
         conexao = self.__conexao_factory.get_conexao()
         cursor = conexao.cursor()
