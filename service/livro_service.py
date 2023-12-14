@@ -11,7 +11,7 @@ from typing import cast
 class LivroService:
 
     def __init__(self, categoria_dao: CategoriaDAO, editora_dao: EditoraDAO, autor_dao: AutorDAO):
-        self.__livro_dao: LivroDAO = LivroDAO()
+        self.__livro_dao: LivroDAO = LivroDAO(categoria_dao, editora_dao, autor_dao)
         self.__categoria_dao: CategoriaDAO = categoria_dao
         self.__editora_dao: EditoraDAO = editora_dao
         self.__autor_dao: AutorDAO = autor_dao
@@ -60,7 +60,6 @@ class LivroService:
         print('\nAdicionando livro...')
 
         try:
-            id = self.__livro_dao.ultimo_id() + 1
             titulo = input('Digite o título do livro: ')
             resumo = input('Digite o resumo do livro: ')
             ano = int(input('Digite o ano do livro: '))
